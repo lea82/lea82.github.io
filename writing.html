@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Writing — Lea Li</title>
+<meta name="description" content="Essays on AI safety evaluation, release gating, and high-stakes ML systems.">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav class="topbar">
+  <a href="index.html" class="brand">Lea Li</a>
+  <div class="links">
+    <a href="index.html">Home</a>
+    <a href="writing.html" class="current">Writing</a>
+    <a href="assets/Lea_Yanhui_Li_2026_V2.pdf">Resume</a>
+  </div>
+</nav>
+
+<h1 class="name" style="font-size:28px;margin-bottom:2rem">Writing</h1>
+
+<div class="tag-filter" id="tag-filter">
+  Filtered by tag: <strong id="active-tag"></strong>
+  <a onclick="clearFilter()">clear</a>
+</div>
+
+<div class="post-list" id="posts">
+
+  <div class="post" data-tags="safety agentic evaluation">
+    <span class="date">May 2026</span>
+    <div>
+      <a class="title" href="writing/agentic-safety.html">When single-turn safety isn't enough: building trajectory and action gates →</a>
+      <div class="summary">Stateless LLM safety gates miss slow escalation and agentic tool sequences. How I extended the system to catch both — with real GPT-4o evaluation data from run_002 and run_003.</div>
+      <div class="tags"><a onclick="filterByTag('safety')">safety</a><span class="sep">·</span><a onclick="filterByTag('agentic')">agentic</a><span class="sep">·</span><a onclick="filterByTag('evaluation')">evaluation</a></div>
+    </div>
+  </div>
+
+  <div class="post" data-tags="safety infrastructure governance" id="post-04">
+    <span class="date">Mar 2026</span>
+    <div>
+      <a class="title" href="writing.html#post-04">Designing safe automation thresholds →</a>
+      <div class="summary">A framework for reasoning about when AI should act, pause, or escalate — combining confidence, stakes, reversibility, and error cost into a principled decision matrix.</div>
+      <div class="tags"><a onclick="filterByTag('safety')">safety</a><span class="sep">·</span><a onclick="filterByTag('infrastructure')">infrastructure</a><span class="sep">·</span><a onclick="filterByTag('governance')">governance</a></div>
+    </div>
+  </div>
+
+  <div class="post" data-tags="evaluation safety" id="post-03">
+    <span class="date">Mar 2026</span>
+    <div>
+      <a class="title" href="writing.html#post-03">Why AI evaluation is harder than most teams think →</a>
+      <div class="summary">The structural reasons evaluation resists standardization — the ground truth problem, distribution shift, and a concrete 3× discrepancy from real GPT-4o data that shows why evaluation method choice is itself a design decision.</div>
+      <div class="tags"><a onclick="filterByTag('evaluation')">evaluation</a><span class="sep">·</span><a onclick="filterByTag('safety')">safety</a></div>
+    </div>
+  </div>
+
+  <div class="post" data-tags="evaluation safety" id="post-02">
+    <span class="date">2025</span>
+    <div>
+      <a class="title" href="writing.html#post-02">Building a small LLM evaluation harness →</a>
+      <div class="summary">Side-by-side evaluation of Claude Haiku 4.5 and GPT-4o across hallucination, classification, and refusal compliance. Claude passed 100%; GPT-4o confidently fabricated a non-existent Einstein lecture.</div>
+      <div class="tags"><a onclick="filterByTag('evaluation')">evaluation</a><span class="sep">·</span><a onclick="filterByTag('safety')">safety</a></div>
+    </div>
+  </div>
+
+  <div class="post" data-tags="safety evaluation governance" id="post-01">
+    <span class="date">Mar 2026</span>
+    <div>
+      <a class="title" href="writing.html#post-01">LLM safety evaluation and release gating →</a>
+      <div class="summary">Not direct harmful requests — indirect ones. Fiction wrappers, academic pretexts, sentimental framing. Heuristic evaluation scored self_harm failure at 85.7%; the LLM judge scored the same run at 28.6%. A 3× difference on the same model and prompts.</div>
+      <div class="tags"><a onclick="filterByTag('safety')">safety</a><span class="sep">·</span><a onclick="filterByTag('evaluation')">evaluation</a><span class="sep">·</span><a onclick="filterByTag('governance')">governance</a></div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+function filterByTag(tag) {
+  const posts = document.querySelectorAll('#posts .post');
+  let count = 0;
+  posts.forEach(p => {
+    const tags = (p.dataset.tags || '').split(' ');
+    if (tags.includes(tag)) {
+      p.style.display = '';
+      count++;
+    } else {
+      p.style.display = 'none';
+    }
+  });
+  document.getElementById('active-tag').textContent = tag;
+  document.getElementById('tag-filter').classList.add('active');
+  history.replaceState(null, '', '?tag=' + tag);
+}
+
+function clearFilter() {
+  document.querySelectorAll('#posts .post').forEach(p => p.style.display = '');
+  document.getElementById('tag-filter').classList.remove('active');
+  history.replaceState(null, '', window.location.pathname);
+}
+
+// Apply tag from URL on load
+const urlTag = new URLSearchParams(window.location.search).get('tag');
+if (urlTag) filterByTag(urlTag);
+</script>
+
+</body>
+</html>
