@@ -1,2 +1,4 @@
 # lea82.github.io
-updated personal website
+Personal site of Lea Li — AI safety evaluation and release gating.
+
+Live at: https://lea82.github.io
