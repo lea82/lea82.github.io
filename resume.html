@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resume — Lea Li</title>
+<meta name="description" content="Lea Yanhui Li — AI safety, evaluation, and risk infrastructure. Sr. Staff TPM / PM. Resume.">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+  /* Resume-specific styles */
+  .resume-header {
+    margin-bottom: 2rem;
+  }
+  .resume-header h1 {
+    font-size: 32px;
+    font-weight: 400;
+    margin-bottom: 0.375rem;
+    letter-spacing: -0.3px;
+  }
+  .resume-header .role {
+    font-size: 15px;
+    color: var(--mute);
+    font-style: italic;
+    margin-bottom: 0.5rem;
+  }
+  .resume-header .education-line {
+    font-size: 13px;
+    color: var(--mute);
+    font-family: var(--sans);
+    margin-bottom: 0.75rem;
+  }
+  .resume-header .contact-line {
+    font-size: 13px;
+    color: var(--mute);
+    font-family: var(--sans);
+  }
+  .resume-header .contact-line a {
+    color: var(--accent);
+    border-bottom: none;
+    margin-right: 0.5rem;
+  }
+  .resume-header .contact-line a:hover {
+    border-bottom: 1px solid var(--accent);
+  }
+  .download-row {
+    margin-top: 1rem;
+    padding: 0.625rem 1rem;
+    background: var(--code-bg);
+    font-size: 13px;
+    font-family: var(--sans);
+    color: var(--mute);
+    border-radius: 3px;
+    display: inline-block;
+  }
+  .download-row a {
+    color: var(--accent);
+    border-bottom: none;
+    margin-left: 0.5rem;
+  }
+
+  .resume-summary {
+    margin: 2rem 0 2.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--rule);
+    font-size: 15px;
+    line-height: 1.7;
+    color: #2a2a2a;
+  }
+
+  h2.resume-section {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--mute);
+    font-weight: 500;
+    margin-top: 2.5rem;
+    margin-bottom: 1.25rem;
+    font-family: var(--sans);
+  }
+
+  .competency-row {
+    margin-bottom: 0.875rem;
+    font-size: 14px;
+    line-height: 1.65;
+  }
+  .competency-row strong {
+    color: var(--ink);
+    font-weight: 500;
+    font-family: var(--sans);
+    font-size: 13px;
+  }
+  .competency-row .desc {
+    color: #333;
+  }
+
+  .role-block {
+    margin-bottom: 2rem;
+  }
+  .role-header {
+    margin-bottom: 0.5rem;
+  }
+  .role-title {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--ink);
+  }
+  .role-org {
+    font-size: 14px;
+    color: var(--mute);
+    font-style: italic;
+  }
+  .role-dates {
+    font-size: 13px;
+    color: var(--mute);
+    font-family: var(--sans);
+    float: right;
+  }
+  .role-summary {
+    font-size: 14px;
+    color: #333;
+    margin: 0.5rem 0 0.75rem;
+    line-height: 1.65;
+  }
+  .role-bullets {
+    list-style: none;
+    padding-left: 0;
+  }
+  .role-bullets li {
+    font-size: 14px;
+    line-height: 1.65;
+    color: #333;
+    padding-left: 1.25rem;
+    position: relative;
+    margin-bottom: 0.625rem;
+  }
+  .role-bullets li::before {
+    content: "—";
+    position: absolute;
+    left: 0;
+    color: var(--lite);
+  }
+  .role-bullets li strong {
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  .portfolio-item {
+    margin-bottom: 1.75rem;
+  }
+  .portfolio-title {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 0.375rem;
+  }
+  .portfolio-title a {
+    color: var(--accent);
+    border-bottom: none;
+    font-size: 13px;
+    font-family: var(--sans);
+    font-weight: normal;
+    margin-left: 0.5rem;
+  }
+  .portfolio-title a:hover {
+    border-bottom: 1px solid var(--accent);
+  }
+  .portfolio-desc {
+    font-size: 14px;
+    line-height: 1.65;
+    color: #333;
+  }
+  .portfolio-desc p {
+    margin-bottom: 0.625rem;
+  }
+  .portfolio-desc strong {
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  .cert-list {
+    list-style: none;
+    padding: 0;
+    columns: 2;
+    column-gap: 2rem;
+    font-size: 13.5px;
+    line-height: 1.7;
+    font-family: var(--sans);
+    color: #333;
+  }
+  .cert-list li {
+    padding-left: 1rem;
+    position: relative;
+    break-inside: avoid;
+  }
+  .cert-list li::before {
+    content: "·";
+    position: absolute;
+    left: 0;
+    color: var(--lite);
+  }
+
+  @media (max-width: 600px) {
+    .role-dates { float: none; display: block; margin-top: 0.25rem; }
+    .cert-list { columns: 1; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="topbar">
+  <a href="index.html" class="brand">Lea Li</a>
+  <div class="links">
+    <a href="index.html">Home</a>
+    <a href="writing.html">Writing</a>
+    <a href="resume.html" class="current">Resume</a>
+  </div>
+</nav>
+
+<div class="resume-header">
+  <h1>Lea Yanhui Li</h1>
+  <div class="role">AI Safety, Evaluation &amp; Risk Infrastructure · Sr. Staff TPM / PM</div>
+  <div class="education-line">MBA, UC Berkeley Haas · MEng Computer Engineering, NUS</div>
+  <div class="contact-line">
+    <a href="mailto:liyanhui82@gmail.com">liyanhui82@gmail.com</a> ·
+    <a href="https://linkedin.com/in/leayanhuili" target="_blank">LinkedIn</a> ·
+    <a href="https://github.com/lea82" target="_blank">GitHub</a> ·
+    San Jose, CA
+  </div>
+  <div class="download-row">
+    Prefer a PDF? <a href="assets/Lea_Yanhui_Li_2026_V2.pdf">Download here →</a>
+  </div>
+</div>
+
+<div class="resume-summary">
+  Sr. Staff TPM specializing in AI safety, evaluation, and risk infrastructure at scale, with 15+ years translating policy and technical evidence into production decisions where failure carries regulatory, reputational, or human risk. At Meta, owned reliability of ML classifier pipelines and LLM-powered enforcement systems — purpose limitation enforcement, evaluation-driven deployment, human-in-the-loop review, audit trails, and operational oversight for safety-critical automation across millions of assets and data flows. Independently built an LLM safety evaluation and release gating system — multi-turn trajectory risk tracking, irreversibility-aware action gating, and structured SHIP / CONDITIONAL SHIP / BLOCK decisions on policy compliance.
+</div>
+
+<h2 class="resume-section">Core competencies</h2>
+
+<div class="competency-row">
+  <strong>Safety &amp; Evaluation</strong><br>
+  <span class="desc">ML classifier reliability · LLM-as-judge design · evaluation infrastructure · release gating · trajectory risk accumulation · irreversibility-aware action gates · ground-truth datasets · adversarial datasets · refusal quality scoring · failure-mode analysis · SLO definition &amp; tracking · drift detection · post-mortem execution</span>
+</div>
+
+<div class="competency-row">
+  <strong>Program leadership</strong><br>
+  <span class="desc">0-to-1 program ownership · operational excellence · cross-org alignment · influence without authority · risk-weighted decisions · policy operationalization · runbook development · executive stakeholder communication · multi-year roadmaps</span>
+</div>
+
+<div class="competency-row">
+  <strong>Technical</strong><br>
+  <span class="desc">Python · Anthropic / OpenAI APIs · CI/CD · AWS (SA Certified) · GCP · Kubernetes · LLM safety evaluation · ML evaluation infrastructure · data lineage pipelines · adversarial dataset design</span>
+</div>
+
+<div class="competency-row">
+  <strong>Domains</strong><br>
+  <span class="desc">AI governance · safety systems · agentic safety · responsible AI deployment · regulatory compliance · privacy</span>
+</div>
+
+<h2 class="resume-section">Experience</h2>
+
+<div class="role-block">
+  <div class="role-header">
+    <div class="role-title">Sr. Staff Technical Program Manager <span style="font-weight:normal;color:var(--mute)">· Risk &amp; Privacy Infrastructure</span></div>
+    <div class="role-org">Meta · Menlo Park, CA <span class="role-dates">2022 – 2026</span></div>
+  </div>
+  <div class="role-summary">
+    Owned strategy and execution for Meta's Privacy-Aware Infrastructure — enforcing that user data is used only for its stated purpose across Instagram, Facebook, MSL, Fintech, and Reality Labs. Focus: how ML classifiers and LLM-powered systems are evaluated, deployed, and monitored where mis-calibrated automation means compliance breach or harm at scale.
+  </div>
+  <ul class="role-bullets">
+    <li><strong>Cross-org program ownership:</strong> Built a 0→1 ML automation program across 50+ engineers and 5 product orgs with no shared OKR, delivering $110M annual cost reduction while maintaining all enforcement SLOs and regulatory guardrails.</li>
+    <li><strong>Evaluation infrastructure &amp; classifier reliability:</strong> Designed evaluation-driven deployment systems for ML classifiers — automation threshold design, drift detection, and risk-tiered precision/recall calibration against ground-truth datasets. Improved precision 80% → 95% across safety-critical pipelines.</li>
+    <li><strong>Operational reliability &amp; incident response:</strong> Built observability infrastructure for LLM-powered enforcement — regression monitoring, post-mortem execution, human-in-the-loop review workflows with defined SLOs and runbooks.</li>
+    <li><strong>Purpose limitation &amp; harm prevention at scale:</strong> Redesigned fragmented manual checks into end-to-end enforcement flows — ML-powered data discovery, lineage traversal, consent verification, and automated evidencing — reducing cycle time from 17 days to 5 minutes.</li>
+    <li><strong>Youth safety, fintech &amp; sensitive data:</strong> Led age discovery and enforcement for Teen Account launches (EU + Global), reducing age misuse by 95%; deployed PCI-compliant payment data traceability across 100% of Meta Fintech cloud-to-on-premise endpoints, uncovering and remediating 8+ sensitive data leaks.</li>
+  </ul>
+</div>
+
+<div class="role-block">
+  <div class="role-header">
+    <div class="role-title">Senior Technical Program Manager <span style="font-weight:normal;color:var(--mute)">· Amazon Chime SDK</span></div>
+    <div class="role-org">Amazon Web Services · Santa Clara, CA <span class="role-dates">2021 – 2022</span></div>
+  </div>
+  <div class="role-summary">
+    Bridged research science and production for AI-powered audio and video features. Partnered with research scientists and applied scientists across the full pipeline — from training data collection through model evaluation, launch readiness, and feature delivery. Delivered Voice Focus and Background Blur, improving real-time communication quality at scale.
+  </div>
+</div>
+
+<h2 class="resume-section">AI safety &amp; evaluation portfolio</h2>
+
+<div class="portfolio-item">
+  <div class="portfolio-title">
+    LLM Safety Evaluation &amp; Release Gating System
+    <a href="https://github.com/lea82/llm-safety-gating" target="_blank">GitHub →</a>
+    <a href="writing/release-gating.html">Essay →</a>
+  </div>
+  <div class="portfolio-desc">
+    <p>Translates written safety policy (YAML) into measurable evaluation categories, risk-weighted thresholds, and structured SHIP / CONDITIONAL SHIP / BLOCK decisions. LLM-as-judge scoring across adversarial and indirect attacks assesses refusal quality, harmfulness, and policy compliance — penalizing cold or dismissive refusals on critical-severity prompts.</p>
+
+    <p><strong>Phase 1 — Trajectory risk accumulator:</strong> Extended single-turn gating to multi-turn conversation tracking with weighted risk accumulation across turns. Each turn evaluated independently; trajectory score escalates non-linearly when later turns reveal harmful intent that no individual turn would trigger. Addresses the multi-turn harm prevention gap that single-turn classifiers are structurally blind to.</p>
+
+    <p><strong>Phase 2 — Irreversibility-aware action gate:</strong> Added tool-call evaluation as a separate dimension from text outputs — scoring proposed actions on harm probability AND reversibility. Irreversible actions (<code>send_email</code>, <code>file_delete</code>, external API calls with side effects) require higher confidence to SHIP and trigger immediate BLOCK in suspicious trajectories. Implements the threshold logic that distinguishes inference safety from agentic safety.</p>
+
+    <p><strong>Key finding:</strong> evaluated GPT-4o across 62 adversarial prompts — heuristic vs. LLM-as-judge evaluation produced 85.7% vs. 28.6% self-harm failure rate (3× difference). Demonstrates that evaluation method choice is itself a safety design decision with measurable consequences. Revealed a consistent bypass pattern across indirect framings — fiction, academic pretext, sentimental framing — with failure rates of 28.6% (self-harm), 35.7% (illicit behavior), 16.7% (jailbreak).</p>
+  </div>
+</div>
+
+<div class="portfolio-item">
+  <div class="portfolio-title">
+    LLM Evaluation Framework
+    <a href="https://github.com/lea82/llm-evaluation-framework" target="_blank">GitHub →</a>
+    <a href="writing/llm-eval-harness.html">Essay →</a>
+  </div>
+  <div class="portfolio-desc">
+    CI/CD-integrated benchmarking system measuring hallucination rate, classification accuracy, refusal compliance, and consistency across model versions. Caught GPT-4o fabricating a non-existent Einstein lecture (Claude Haiku 4.5: 100% vs GPT-4o: 91.7%).
+  </div>
+</div>
+
+<h2 class="resume-section">Earlier experience</h2>
+
+<div class="role-block">
+  <div class="role-header">
+    <div class="role-title">Senior Research Scientist &amp; Enterprise Architect</div>
+    <div class="role-org">Hitachi America <span class="role-dates">2016 – 2019</span></div>
+  </div>
+  <div class="role-summary">
+    Led AI-driven IoT analytics and anomaly detection for smart manufacturing; improved productivity 17%.
+  </div>
+</div>
+
+<div class="role-block">
+  <div class="role-header">
+    <div class="role-title">Co-Founder &amp; Chief Product Officer</div>
+    <div class="role-org">SuiteSocial <span class="role-dates">2019</span></div>
+  </div>
+  <div class="role-summary">
+    Built a 0-to-1 ML-driven marketplace matching brands and influencers; onboarded 300+ influencers and 8 paying clients.
+  </div>
+</div>
+
+<div class="role-block">
+  <div class="role-header">
+    <div class="role-title">Director of Engineering &amp; Product <span style="font-weight:normal;color:var(--mute)">(part-time)</span></div>
+    <div class="role-org">CommunityConnect Labs <span class="role-dates">2019 – 2020</span></div>
+  </div>
+  <div class="role-summary">
+    Led product and engineering for a conversational AI system serving government clients; managed a cross-continental team.
+  </div>
+</div>
+
+<div class="role-block">
+  <div class="role-header">
+    <div class="role-title">Software Engineer</div>
+    <div class="role-org">Oracle · Motorola <span class="role-dates">2008 – 2016</span></div>
+  </div>
+  <div class="role-summary">
+    Developed core components of Oracle's Virtual Desktop Infrastructure platform supporting enterprise virtualization and cloud deployments; shipped two mobile products at Motorola.
+  </div>
+</div>
+
+<h2 class="resume-section">Education</h2>
+
+<ul class="role-bullets">
+  <li><strong>MBA</strong>, University of California, Berkeley, Haas School of Business</li>
+  <li><strong>MEng</strong>, Computer Engineering, National University of Singapore</li>
+  <li><strong>BEng</strong>, Computer Science, Northeastern University, China</li>
+</ul>
+
+<h2 class="resume-section">Certifications &amp; leadership</h2>
+
+<ul class="cert-list">
+  <li>Google Generative AI Leader — Google (2026)</li>
+  <li>Advanced PM Skills — Product Faculty (2025)</li>
+  <li>AI Product Management Certificate — Product Faculty (2024)</li>
+  <li>AWS Certified Solutions Architect – Associate (2021)</li>
+  <li>PMP — Project Management Professional (2022)</li>
+  <li>Mentor, Berkeley Haas Entrepreneurship Program (2024 – Present)</li>
+  <li>Lecturer, Operations Management — UC Berkeley Haas (2021)</li>
+</ul>
+
+<div class="essay-footer" style="margin-top:3rem">
+  Last updated May 2026. <a href="assets/Lea_Yanhui_Li_2026_V2.pdf">PDF version</a>.
+</div>
+
+</body>
+</html>
