@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Building a small LLM evaluation harness — Lea Li</title>
+<meta name="description" content="Side-by-side evaluation of Claude Haiku 4.5 and GPT-4o on hallucination, classification, and refusal compliance. Claude 100%; GPT fabricated an Einstein lecture.">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+
+<nav class="topbar">
+  <a href="../index.html" class="brand">Lea Li</a>
+  <div class="links">
+    <a href="../index.html">Home</a>
+    <a href="../writing.html" class="current">Writing</a>
+    <a href="../assets/Lea_Yanhui_Li_2026_V2.pdf">Resume</a>
+  </div>
+</nav>
+
+<a href="../writing.html" class="back-link">← Back to writing</a>
+
+<h1 class="essay-title">Building a small LLM evaluation harness</h1>
+
+<div class="essay-meta">
+  <span>Feb 2026</span>
+  <span><a href="https://github.com/lea82/llm-evaluation-framework" target="_blank" style="color:var(--accent);border-bottom:none">GitHub →</a></span>
+  <span class="tags">
+    <a href="../writing.html?tag=evaluation">evaluation</a>
+    <a href="../writing.html?tag=safety">safety</a>
+  </span>
+</div>
+
+<div class="essay">
+
+  <p>As a first experiment in building evaluation infrastructure, I ran Claude Haiku 4.5 and GPT-4o side-by-side on a fixed dataset of 12 structured evaluation items designed to test three behaviors: hallucination resistance, classification accuracy, and refusal compliance. Each model received the same prompts and was scored against the same criteria.</p>
+
+  <h2>Results</h2>
+
+  <table>
+    <thead><tr><th>Metric</th><th>Claude Haiku 4.5</th><th>GPT-4o</th></tr></thead>
+    <tbody>
+      <tr><td>Overall pass rate</td><td>100.0%</td><td>91.7%</td></tr>
+      <tr><td>Hallucination pass rate</td><td>100.0%</td><td>66.7%</td></tr>
+      <tr><td>Classification accuracy</td><td>100.0%</td><td>100.0%</td></tr>
+      <tr><td>Refusal compliance</td><td>100.0%</td><td>100.0%</td></tr>
+    </tbody>
+  </table>
+
+  <p>One interesting failure mode surfaced in the hallucination tests: GPT-4o confidently fabricated details about a non-existent Einstein lecture at Oxford in 1926. The response had specific dates, room locations, and topic descriptions — none of which existed in any historical record. Claude declined to invent details and instead noted that no such lecture was on record.</p>
+
+  <h2>What this is and isn't</h2>
+
+  <p>With only 12 evaluation items, this isn't intended as a definitive model comparison. In production environments, evaluation datasets typically scale to hundreds or thousands of prompts, and models are tested across multiple runs and prompt variants.</p>
+
+  <p>What this <em>does</em> demonstrate is that even small reproducible evaluation harnesses can surface interesting failure modes and serve as the foundation for regression testing and safe automation thresholds. The fabricated Einstein lecture is the kind of failure that most users would not catch — it sounds plausible enough that someone trusting the model's output would treat it as fact. Without an evaluation harness designed to test for hallucination specifically, this class of failure goes undetected.</p>
+
+  <h2>What's next</h2>
+
+  <p>Two directions extend this work.</p>
+
+  <p><strong>Prompt stability testing</strong> — running repeated evaluations against the same prompts to measure output consistency. A model that produces correct answers 8 out of 10 runs is meaningfully different from one that produces correct answers 10 out of 10 — particularly for safety-critical applications where worst-case behavior matters more than average behavior.</p>
+
+  <p><strong>Prompt sensitivity analysis</strong> — testing how paraphrased prompts affect model behavior. Adversarial users will not phrase requests the way evaluation datasets do. A model that passes evaluation on canonical phrasings but fails on natural paraphrases provides false assurance.</p>
+
+  <p>The larger arc this is part of: evaluation systems that help determine <em>when AI can act autonomously and when humans should remain in the loop</em>. Reliability benchmarks. Confidence thresholds. Human-in-the-loop decision pipelines. The infrastructure that turns "the model usually works" into "the model is safe to deploy in this specific context."</p>
+
+</div>
+
+</body>
+</html>

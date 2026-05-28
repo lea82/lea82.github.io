@@ -36,39 +36,39 @@
     </div>
   </div>
 
-  <div class="post" data-tags="safety infrastructure governance" id="post-04">
+  <div class="post" data-tags="safety infrastructure governance">
     <span class="date">Mar 2026</span>
     <div>
-      <a class="title" href="writing.html#post-04">Designing safe automation thresholds →</a>
+      <a class="title" href="writing/safe-automation-thresholds.html">Designing safe automation thresholds →</a>
       <div class="summary">A framework for reasoning about when AI should act, pause, or escalate — combining confidence, stakes, reversibility, and error cost into a principled decision matrix.</div>
       <div class="tags"><a onclick="filterByTag('safety')">safety</a><span class="sep">·</span><a onclick="filterByTag('infrastructure')">infrastructure</a><span class="sep">·</span><a onclick="filterByTag('governance')">governance</a></div>
     </div>
   </div>
 
-  <div class="post" data-tags="evaluation safety" id="post-03">
+  <div class="post" data-tags="evaluation safety">
     <span class="date">Mar 2026</span>
     <div>
-      <a class="title" href="writing.html#post-03">Why AI evaluation is harder than most teams think →</a>
+      <a class="title" href="writing/ai-evaluation-hard.html">Why AI evaluation is harder than most teams think →</a>
       <div class="summary">The structural reasons evaluation resists standardization — the ground truth problem, distribution shift, and a concrete 3× discrepancy from real GPT-4o data that shows why evaluation method choice is itself a design decision.</div>
       <div class="tags"><a onclick="filterByTag('evaluation')">evaluation</a><span class="sep">·</span><a onclick="filterByTag('safety')">safety</a></div>
     </div>
   </div>
 
-  <div class="post" data-tags="evaluation safety" id="post-02">
-    <span class="date">2025</span>
+  <div class="post" data-tags="safety evaluation governance">
+    <span class="date">Feb 2026</span>
     <div>
-      <a class="title" href="writing.html#post-02">Building a small LLM evaluation harness →</a>
-      <div class="summary">Side-by-side evaluation of Claude Haiku 4.5 and GPT-4o across hallucination, classification, and refusal compliance. Claude passed 100%; GPT-4o confidently fabricated a non-existent Einstein lecture.</div>
-      <div class="tags"><a onclick="filterByTag('evaluation')">evaluation</a><span class="sep">·</span><a onclick="filterByTag('safety')">safety</a></div>
+      <a class="title" href="writing/release-gating.html">LLM safety evaluation and release gating →</a>
+      <div class="summary">Not direct harmful requests — indirect ones. Fiction wrappers, academic pretexts, sentimental framing. Heuristic evaluation scored self_harm failure at 85.7%; the LLM judge scored the same run at 28.6%. A 3× difference on the same model and prompts.</div>
+      <div class="tags"><a onclick="filterByTag('safety')">safety</a><span class="sep">·</span><a onclick="filterByTag('evaluation')">evaluation</a><span class="sep">·</span><a onclick="filterByTag('governance')">governance</a></div>
     </div>
   </div>
 
-  <div class="post" data-tags="safety evaluation governance" id="post-01">
-    <span class="date">Mar 2026</span>
+  <div class="post" data-tags="evaluation safety">
+    <span class="date">Feb 2026</span>
     <div>
-      <a class="title" href="writing.html#post-01">LLM safety evaluation and release gating →</a>
-      <div class="summary">Not direct harmful requests — indirect ones. Fiction wrappers, academic pretexts, sentimental framing. Heuristic evaluation scored self_harm failure at 85.7%; the LLM judge scored the same run at 28.6%. A 3× difference on the same model and prompts.</div>
-      <div class="tags"><a onclick="filterByTag('safety')">safety</a><span class="sep">·</span><a onclick="filterByTag('evaluation')">evaluation</a><span class="sep">·</span><a onclick="filterByTag('governance')">governance</a></div>
+      <a class="title" href="writing/llm-eval-harness.html">Building a small LLM evaluation harness →</a>
+      <div class="summary">Side-by-side evaluation of Claude Haiku 4.5 and GPT-4o across hallucination, classification, and refusal compliance. Claude passed 100%; GPT-4o confidently fabricated a non-existent Einstein lecture.</div>
+      <div class="tags"><a onclick="filterByTag('evaluation')">evaluation</a><span class="sep">·</span><a onclick="filterByTag('safety')">safety</a></div>
     </div>
   </div>
 
@@ -77,15 +77,9 @@
 <script>
 function filterByTag(tag) {
   const posts = document.querySelectorAll('#posts .post');
-  let count = 0;
   posts.forEach(p => {
     const tags = (p.dataset.tags || '').split(' ');
-    if (tags.includes(tag)) {
-      p.style.display = '';
-      count++;
-    } else {
-      p.style.display = 'none';
-    }
+    p.style.display = tags.includes(tag) ? '' : 'none';
   });
   document.getElementById('active-tag').textContent = tag;
   document.getElementById('tag-filter').classList.add('active');
@@ -98,7 +92,6 @@ function clearFilter() {
   history.replaceState(null, '', window.location.pathname);
 }
 
-// Apply tag from URL on load
 const urlTag = new URLSearchParams(window.location.search).get('tag');
 if (urlTag) filterByTag(urlTag);
 </script>
